@@ -35,8 +35,8 @@
 
 <script>
     import SignUpModalViewVue from "./SignUpModalView.vue";
-
     import { mapActions } from "vuex"
+    import axios from "axios";
 
     export default {
         data : () => ({
@@ -55,10 +55,24 @@
 
         methods : {
             ...mapActions('page', ['setAllVisible']),
+            ...mapActions('user', ['setToken', 'setName', 'setId']),
 
-            login() {
+            async login() {
                 // 로그인을 구현하세요.
+                const response = await axios.post(`/auth/user`, {
+                    id: this.id,
+                    pwd: this.password,
+                });
+
                 // 로그인을 한 이후 회원정보를 가져와 vuex user 모듈에 등록하세요.
+                if(response.status === this.HTTP_OK){
+                    const token = response.data.token;
+                    this.setToken(token);
+                    
+                    const {data : user} = await axios.get(`/api/auth/user`);
+                    this.setId(user.id);
+                    this.setName(user.name);
+                } 
             }
         },
 

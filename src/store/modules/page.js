@@ -1,5 +1,7 @@
 import HomeView from '@/views/HomeView.vue'
 import LoginView from '@/views/login/LoginView.vue'
+import MapView from '@/views/MapView.vue'
+import BoardView from '@/views/BoardView.vue'
 import UserView from '@/views/UserView.vue'
 
 export default {
@@ -33,6 +35,28 @@ export default {
                     display : true
                 },
                 component : UserView
+            },
+
+            map : {
+                path: `/map`,
+                name: `map`,
+                meta: {
+                    title: `Map`,
+                    icon: `map`,
+                    display : true
+                },
+                component : MapView
+            },
+
+            board : {
+                path: `/board`,
+                name: `board`,
+                meta: {
+                    title: `Board`,
+                    icon: `map`,
+                    display : true
+                },
+                component : BoardView
             },
 
             login : {

@@ -7,7 +7,7 @@
 
         <MainView></MainView>
 
-        <FooterView></FooterView>
+        <!-- <FooterView></FooterView> -->
         
     </v-app>
 </template>

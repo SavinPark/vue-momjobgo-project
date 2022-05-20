@@ -41,13 +41,19 @@ export default {
 
   computed : {  
     ...mapGetters('page', ['menuList', 'visible']),
-    ...mapGetters('user', ['name'])
+    ...mapGetters('user', ['name']),
   },
 
   methods : {
+    ...mapActions('user', ['setToken']),
 
     logout(){
       // 로그아웃을 구현하세요.
+      if(!confirm('로그아웃 하시겠습니까?')){
+        return false;
+      }
+      
+      this.setToken('');
     }
   }
 

@@ -35,6 +35,7 @@
 </template>
 
 <script>
+    import axios from 'axios';
     export default {
         props : {
             btnColor : {
@@ -55,8 +56,20 @@
         }),
 
         methods: {
-            submit() {
+            async submit() {
                 // 회원가입을 구현하세요.
+                if(this.user.pwd === this.user.checkPwd){
+                    c = await axios.post('/auth/user/new', {
+                        ...this.user
+                    });
+                    if(response.status === this.HTTP_CREATED){
+                        alert('회원가입 되었습니다.');
+                        this.dialog = false;
+                    }
+                } else {
+                    alert("패스워드가 일치하지 않습니다.")
+                    this.$refs.checkPwd.focus();
+                }
             }
         },
 
